@@ -93,13 +93,13 @@ const App = () => {
             {user.role === 'organizer' && (
               <>
                 <Link style={padding} to="/tournaments/create">crear torneo</Link>
-                <Link style={padding} to="/profile/tournaments">mis torneos</Link>
+                <Link style={padding} to="/organizer/tournaments">mis torneos</Link>
               </>
             )}
             {/* USERS */}
             {user.role === 'user' && (
               <>
-                <Link style={padding} to="/profile/tournamets">mis inscripciones</Link>
+                <Link style={padding} to="/user/tournaments">mis inscripciones</Link>
               </>
             )}
           </div>
@@ -127,14 +127,14 @@ const App = () => {
               )
               : <Navigate replace to="/" />
           } />
-          <Route path="/profile/tournaments" element={
-            user !== null 
-              ? (
+          <Route path="/organizer/tournaments" element={
+            user && user.role === 'organizer' ? 
+              (
                 <TournamentsC.MyTournaments user={user} />
               )
               : <Navigate replace to="/" />
           } />
-          <Route path="/profile/tournamets" element={user && user.role === 'user' ? (
+          <Route path="/user/tournaments" element={user && user.role === 'user' ? (
             <TournamentsC.MyInscriptions user={user} />
           ) : (
             <Navigate replace to="/" />
@@ -193,11 +193,6 @@ const App = () => {
           } />
           <Route path="/tournaments/create" element={user && user.role === 'organizer' ? (
             <TournamentsC.CreateTournament />
-          ) : (
-            <Navigate replace to="/" />
-          )} />
-          <Route path="/tournaments/:id/edit" element={user && user.role === 'organizer' ? (
-            <TournamentsC.ModifyTournament user={user} />
           ) : (
             <Navigate replace to="/" />
           )} />
