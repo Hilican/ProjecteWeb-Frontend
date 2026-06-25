@@ -29,7 +29,7 @@ const getMyInscriptions = (username) => {
     const config = {
         headers: { Authorization: getToken() }
     }
-    const request = axios.get(`${baseUrl}/user/${username}`, config)
+    const request = axios.get(`${baseUrl}/user/username/${username}`, config)
     return request.then(response => response.data)
 }
 
@@ -45,7 +45,7 @@ const isRegistered = (tournamentId, username) => {
     const config = {
         headers: { Authorization: getToken() }
     }
-    const request = axios.get(`${baseUrl}/${tournamentId}/participants/${username}`, config)
+    const request = axios.get(`${baseUrl}/${tournamentId}/participants/username/${username}`, config)
     return request.then(response => response.data)
 }
 
