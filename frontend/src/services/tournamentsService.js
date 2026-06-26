@@ -30,7 +30,7 @@ const getMyInscriptions = (username) => {
         headers: { Authorization: getToken() }
     }
     const request = axios.get(`${baseUrl}/user/username/${username}`, config)
-    return request.then(response => response.data)
+    return request.then(response => response.data.userTournaments)
 }
 
 const create = async newObject => {
